@@ -1,5 +1,3 @@
-# Secure User Authentication System
-### ProDigy InfoTech Internship Task-01
 
 A full-stack, secure, and modern User Authentication System featuring robust JWT validation, bcrypt password encryption, role-based access control (RBAC), user profile customization (including avatar uploads), and an administrative control panel. The user interface features a premium glassmorphic visual language, complete with smooth animations and a responsive dark/light mode toggle.
 
