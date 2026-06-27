@@ -9,7 +9,7 @@ import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import ProfileBuilder from './pages/ProfileBuilder';
 import Settings from './pages/Settings';
-import { Shield, LayoutDashboard, User, Settings as SettingsIcon, LogOut, Sun, Moon, Trash2 } from 'lucide-react';
+import { Shield, LayoutDashboard, User, Settings as SettingsIcon, LogOut, Sun, Moon, Trash2, Heart } from 'lucide-react';
 import api from './services/api';
 
 const AppContent = () => {
@@ -199,10 +199,12 @@ const AppContent = () => {
 
       {/* Modern footer layout */}
       <footer className="footer">
-        <div className="container-fluid" style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
-          <span>&copy; {new Date().getFullYear()} SecureAuth Portal. All Rights Reserved.</span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <Shield size={14} style={{ color: 'var(--primary)' }} /> ProDigy InfoTech Internship Task-01
+        <div className="container-fluid" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', flexWrap: 'wrap', textAlign: 'center', padding: '4px 0' }}>
+          <Shield size={13} style={{ color: 'var(--primary)', flexShrink: 0 }} />
+          <span style={{ fontWeight: '600', fontSize: '0.78rem', color: 'var(--text-primary)' }}>SecureAuth Portal</span>
+          <span style={{ color: 'var(--text-muted)', fontSize: '0.78rem' }}>·</span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '0.78rem', color: 'var(--text-muted)', flexWrap: 'wrap', justifyContent: 'center' }}>
+            &copy; {new Date().getFullYear()} All Rights Reserved. Securing your digital world with <Heart size={12} fill="currentColor" style={{ color: '#ef4444', flexShrink: 0 }} />.
           </span>
         </div>
       </footer>

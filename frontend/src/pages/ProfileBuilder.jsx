@@ -1041,7 +1041,7 @@ const ProfileBuilder = () => {
               )}
 
               {/* Footer */}
-              <div style={{ marginTop: '28px', paddingTop: '16px', borderTop: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: '#9ca3af' }}>
+              <div style={{ marginTop: '28px', paddingTop: '16px', borderTop: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px', fontSize: '0.8rem', color: '#9ca3af' }}>
                 <span>SecureAuth Portal</span>
                 <span>Generated: {new Date().toLocaleDateString()}</span>
               </div>

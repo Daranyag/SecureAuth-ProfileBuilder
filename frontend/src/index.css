@@ -563,11 +563,33 @@ h6 {
 /* Footer */
 .footer {
   margin-top: auto;
-  padding: 24px;
+  padding: 12px 24px;
   text-align: center;
   color: var(--text-muted);
-  font-size: 0.875rem;
+  font-size: 0.78rem;
   border-top: 1px solid var(--panel-border);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
 }
 
 /* Page Layout Wrappers */
