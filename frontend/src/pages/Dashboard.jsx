@@ -114,11 +114,11 @@ const Dashboard = () => {
 
   /* ═══════════════════════════════ RENDER ═══════════════════════════════ */
   return (
-    <div className="theme-dashboard animate-fade" style={{ minHeight: '100vh', width: '100vw', padding: '40px 0' }}>
-      <div className="container-fluid">
+    <div className="theme-dashboard animate-fade" style={{ minHeight: '100vh', width: '100%', padding: '40px 20px', overflowX: 'hidden', boxSizing: 'border-box' }}>
+      <div className="container-fluid dashboard-container">
         {/* ── Welcome Card ── */}
-      <div className="glass-panel" style={{ padding: '32px', marginBottom: '32px', display: 'flex', flexWrap: 'wrap', gap: '24px', justifyContent: 'space-between', alignItems: 'center' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+      <div className="glass-panel welcome-card" style={{ padding: '32px', marginBottom: '32px', display: 'flex', flexWrap: 'wrap', gap: '24px', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div className="welcome-profile" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
           {getAvatarUrl(user?.profileImage)
             ? <img src={getAvatarUrl(user.profileImage)} alt="Avatar" className="avatar avatar-large" />
             : <img src={`https://ui-avatars.com/api/?name=${user?.name || 'User'}&background=random&color=fff&size=128`} alt="Default Avatar" className="avatar avatar-large" />
@@ -159,7 +159,7 @@ const Dashboard = () => {
           </h2>
 
           {/* Stats Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', marginBottom: '32px' }}>
+          <div className="stat-card-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', marginBottom: '32px' }}>
             {[
               { icon: <Users size={24} />, value: totalUsers, label: 'Total Registered Users', grad: 'var(--primary-gradient)' },
               { icon: <UserCheck size={24} />, value: activeCount, label: 'Active User Accounts', grad: 'linear-gradient(135deg,#10b981,#059669)' },
@@ -214,7 +214,7 @@ const Dashboard = () => {
       {/* ══════════════════════════════════════════════════ */}
 
       {/* ── Personal Profile Builder Section ── */}
-      <div className="glass-panel" style={{ padding: '32px', marginBottom: '32px', background: 'linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%)', border: '1px solid rgba(99,102,241,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
+      <div className="glass-panel profile-builder-card" style={{ padding: '32px', marginBottom: '32px', background: 'linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%)', border: '1px solid rgba(99,102,241,0.2)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px' }}>
         <div style={{ flex: '1 1 300px' }}>
           <h2 style={{ fontSize: '1.6rem', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '12px', fontFamily: 'var(--font-title)' }}>
             <div style={{ padding: '10px', borderRadius: '12px', background: 'var(--primary-gradient)', color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -236,7 +236,7 @@ const Dashboard = () => {
         <h2 style={{ fontSize: '1.3rem', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px', fontFamily: 'var(--font-title)' }}>
           <Zap size={20} style={{ color: 'var(--primary)' }} /> Quick Actions
         </h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '14px' }}>
+        <div className="quick-actions-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '14px' }}>
           {[
             { label: 'Edit Profile', icon: <User size={18} />, action: () => navigate('/profile'), style: 'btn-primary' },
             { label: 'Change Password', icon: <Key size={18} />, action: () => navigate('/settings', { state: { section: 'change-password' } }), style: 'btn-secondary' },
@@ -368,6 +368,45 @@ const Dashboard = () => {
 
       <style>{`
         @keyframes spin { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+        
+        /* Dashboard Responsiveness */
+        .dashboard-container { max-width: 1200px; margin: 0 auto; width: 100%; }
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        
+        @media (max-width: 1024px) {
+          .welcome-card { padding: 24px !important; }
+        }
+        
+        @media (max-width: 768px) {
+          .theme-dashboard { padding: 24px 16px !important; }
+          .navbar { flex-wrap: wrap; height: auto !important; padding: 12px 16px !important; gap: 12px; }
+          .nav-links { flex-wrap: wrap; justify-content: center; width: 100%; order: 3; margin-top: 10px; }
+          .welcome-card { flex-direction: column; align-items: stretch !important; text-align: center; }
+          .welcome-profile { flex-direction: column; align-items: center !important; }
+          .welcome-profile h1 { justify-content: center; font-size: 1.5rem !important; text-align: center; }
+          .welcome-text p { justify-content: center; }
+          .profile-builder-card { flex-direction: column; text-align: center; padding: 24px !important; }
+          .profile-builder-card h2 { justify-content: center; font-size: 1.3rem !important; }
+          .profile-builder-card button { width: 100%; }
+        }
+        
+        @media (max-width: 425px) {
+          .theme-dashboard { padding: 16px 12px !important; }
+          .stat-card-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+          .quick-actions-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+          .welcome-profile h1 { font-size: 1.3rem !important; }
+          .avatar-large { width: 80px; height: 80px; }
+          .dashboard-grid { grid-template-columns: 1fr !important; }
+        }
+        
+        @media (max-width: 375px) {
+          .profile-builder-card h2 { font-size: 1.2rem !important; }
+          .nav-brand span { display: none; }
+        }
+        
+        @media (max-width: 320px) {
+          .theme-dashboard { padding: 12px 8px !important; }
+        }
       `}</style>
     </div>
     </div>
